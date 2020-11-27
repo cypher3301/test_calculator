@@ -66,11 +66,14 @@ public class Ligic {
             while (num != 0) {
                 if (num > 10) {
                     s = String.format("X%s", s);
+//                    if (s.equals("XXXXX")) s="L";
+//                    else if(s.equals("XXXX")) s="XL";
+//                    s.sta
                 } else {
                     s += IntegerRome.getRome(num);
                     return s;
                 }
-                num = number - 10;
+                num = num - 10;
             }
         }
         return String.valueOf(number);
