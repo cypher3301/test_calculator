@@ -15,9 +15,10 @@ public class IntegerRome {
         this.numberRome = String.valueOf(number);
     }
 
+    //заполнить значениями соответствий римских и арабских чисел
     private static Map<String, Integer> mapRomeNumber() {
-        //заполнить значениями соответствий римских и арабских чисел
         Map<String, Integer> romeData = new HashMap<>();
+        romeData.put("", 0);
         romeData.put("I", 1);
         romeData.put("II", 2);
         romeData.put("III", 3);
@@ -28,11 +29,20 @@ public class IntegerRome {
         romeData.put("VIII", 8);
         romeData.put("IX", 9);
         romeData.put("X", 10);
+        romeData.put("XX", 20);
+        romeData.put("XXX", 30);
+        romeData.put("XL", 40);
+        romeData.put("L", 50);
+        romeData.put("LX", 60);
+        romeData.put("LXX", 70);
+        romeData.put("LXXX", 80);
+        romeData.put("XC", 90);
+        romeData.put("C", 100);
         return romeData;
     }
 
+    //получить число в виде римского числа
     public static String getRome(int num){
-        //получить число в виде римского числа
         for (Map.Entry<String, Integer> item: romeData.entrySet()){
             if (item.getValue()==num){
                 return item.getKey();
@@ -41,8 +51,8 @@ public class IntegerRome {
         return null;
     }
 
+    //являеться ли число римским
     public static boolean isRomeNumber(Object i) {
-        //являеться ли число римским
         for (Map.Entry<String, Integer> item: romeData.entrySet()){
             if (item.getKey().equals(i)){
                 return true;
@@ -51,22 +61,22 @@ public class IntegerRome {
         return false;
     }
 
+    //получить арабское число из римского для расчета
     public void getIntFromRomeNumber() {
-        //получить арабское число из римского для расчета
         if (romeData.get(this.numberRome) == null) {
             Ligic.dropException();
         }
         this.number = romeData.get(this.numberRome);
     }
 
+    //вернуть арабское число из римского
     public Integer getNumber() {
-        //вернуть арабское число из римского
         getIntFromRomeNumber();
         return number;
     }
 
+    //получить римское число
     public String getNumberRome() {
-        //получить римское число
         return numberRome;
     }
 

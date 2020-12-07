@@ -5,14 +5,14 @@ import java.util.function.IntBinaryOperator;
 
 public class Operator {
     static List<String> operators = List.of("+","-","*","/");//база операторов
-    private String op;
+    private final String op;
 
     public Operator(Object op) {
         this.op = String.valueOf(op);
     }
 
+    //являеться ли симол оператором
     public static boolean isOperator(Object operator){
-        //являеться ли симол оператором
         return operators.stream().anyMatch(n->n.equals(String.valueOf(operator)));
     }
 
@@ -32,8 +32,8 @@ public class Operator {
         return a/b;
     }
 
+    //вернуть ссылку на метод вычисления
     public IntBinaryOperator getOperator() {
-        //вернуть ссылку на метод вычисления
         return switch (this.op) {
             case "+" -> Operator::sum;
             case "-" -> Operator::sub;

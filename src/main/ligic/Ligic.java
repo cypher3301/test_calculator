@@ -20,8 +20,8 @@ public class Ligic {
     public Ligic() {
     }
 
+    //вычислить результат выражения
     public String calculate(String inputString) {
-        //вычислить результат выражения
         flag = 0;//флаг для понимания какой вид чилес используеться (арабские или римские)
         List<Integer> integers = new ArrayList<>();//список чисел
         List<IntBinaryOperator> operators = new ArrayList<>();//список операторов
@@ -53,34 +53,51 @@ public class Ligic {
         return getStringResult();
     }
 
+    //выбросить исключение
     public static void dropException() {
-        //выбросить исключение
         throw new IllegalStateException("Expression not correct");
     }
 
+    // функци преобразование из арабских в римские
     private String convertNumberToRome(int number) {
-        // функци преобразование из арабских в римские
-        String s = "";
+        int[] numb = new int[]{100,50,10,5,1};
+        StringBuffer s = new StringBuffer("");
         int num = number;
+
         if (flag == -1) {
-            while (num != 0) {
-                if (num > 10) {
-                    s = String.format("X%s", s);
-//                    if (s.equals("XXXXX")) s="L";
-//                    else if(s.equals("XXXX")) s="XL";
-//                    s.sta
-                } else {
-                    s += IntegerRome.getRome(num);
-                    return s;
+            int i = 0;
+            while (num!=0){
+                int buff = num/numb[i];
+                num%=numb[i];
+                s.append(IntegerRome.getRome(buff*numb[i]));
+                if(num==9||num==90){
+                    s.append(IntegerRome.getRome(num));
+                    break;
                 }
-                num = num - 10;
+                i++;
             }
         }
-        return String.valueOf(number);
+
+//        if (flag == -1) {
+//            while (num != 0) {
+//                if (num > 10) {
+//                    s = String.format("X%s", s);
+////                    if (s.equals("XXXXX")) s="L";
+////                    else if(s.equals("XXXX")) s="XL";
+////                    s.sta
+//                } else {
+//                    s += IntegerRome.getRome(num);
+//                    return s;
+//                }
+//                num = num - 10;
+//            }
+//        }
+
+        return String.valueOf(s);
     }
 
+    //являеться ли символ числом
     private boolean isDigit(String simbol) {
-        //являеться ли символ числом
         try {
             Integer.parseInt(simbol);
             return true;
@@ -89,19 +106,19 @@ public class Ligic {
         }
     }
 
+    //разбиение строки в масив символов разделенным мат. знаком
     private String[] parseString(String s) {
-        //разбиение строки в масив символов разделенным мат. знаком
         String pattern = "((?<=[+\\-*/])|(?=[+\\-*/]))";
         return s.split(pattern);
     }
 
+    //получить результат в виде чила типа Int
     public int getResult() {
-        //получить результат в виде чила типа Int
         return result;
     }
 
+    //получить результат в виде строки
     public String getStringResult() {
-        //получить результат в виде строки
         return convertNumberToRome(result);
     }
 }

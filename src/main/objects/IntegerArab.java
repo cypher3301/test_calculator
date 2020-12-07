@@ -11,8 +11,8 @@ public class IntegerArab {
         return number;
     }
 
+    //проверить диапазон
     public static boolean isInRange(int number){
-        //проверить диапазон
         return (number<=10)&&(number>=1);
     }
 
