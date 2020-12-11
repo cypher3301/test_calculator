@@ -12,9 +12,9 @@ import java.util.function.IntBinaryOperator;
 public class Ligic {
     static int flag = 0;//1 arab, -1 roume
     /*
-    * Класс для реализации логики калькулятора арабских или римских чисел в диапазоне
-    * от (1,I) до (10,X)
-    * */
+     * Класс для реализации логики калькулятора арабских или римских чисел в диапазоне
+     * от (1,I) до (10,X)
+     * */
     int result;
 
     public Ligic() {
@@ -60,24 +60,24 @@ public class Ligic {
 
     // функци преобразование из арабских в римские
     private String convertNumberToRome(int number) {
-        int[] numb = new int[]{100,50,10,5,1};
+        int[] numb = new int[]{100, 50, 10, 5, 1};
         StringBuffer s = new StringBuffer("");
         int num = number;
-
         if (flag == -1) {
             int i = 0;
-            while (num!=0){
-                int buff = num/numb[i];
-                num%=numb[i];
-                s.append(IntegerRome.getRome(buff*numb[i]));
-                if(num==9||num==90){
+            while (num != 0) {
+                int buff = num / numb[i];
+                num %= numb[i];
+                s.append(IntegerRome.getRome(buff * numb[i]));
+                if (num == 9 || num == 90) {
                     s.append(IntegerRome.getRome(num));
                     break;
                 }
                 i++;
             }
+            return String.valueOf(s);
         }
-
+        return String.valueOf(number);
 //        if (flag == -1) {
 //            while (num != 0) {
 //                if (num > 10) {
@@ -92,8 +92,6 @@ public class Ligic {
 //                num = num - 10;
 //            }
 //        }
-
-        return String.valueOf(s);
     }
 
     //являеться ли символ числом
